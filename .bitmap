@@ -27,7 +27,7 @@
     },
     "utils/theme": {
         "scope": "oyerickshaw.common",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "mainFile": "index.js",
         "rootDir": "src/utils/theme"
     },

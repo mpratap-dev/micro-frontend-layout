@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import { makeStyles } from "@material-ui/core/styles";
-import { IconButton } from "@material-ui/core";
+import { IconButton, Grid } from "@material-ui/core";
 import Logo from "../assets/images/oye_logo.webp";
 import Toolbar from "@material-ui/core/Toolbar";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
-import { Grid } from "@material-ui/core";
 import LinkButton from "./common/LinkButton";
 import If from "./common/If";
 import DashboardDropdown from "./dropdown";
@@ -26,7 +25,11 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     zIndex: 5,
     backgroundColor: `${theme.palette.primary.main} !important`,
-    color: '#fff !important',
+    color: "#fff !important",
+
+    "& .MuiToolbar-root": {
+      paddingLeft: 0,
+    },
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -65,14 +68,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Header(props) {
   const classes = useStyles();
-  // const dispatch = useDispatch();
-  // const isSidebarOpen = useSelector((state) => state.isSidebarOpen);
   const userImageSrc = localStorage.getItem("pic");
   const mobileWidth = useMediaQuery("(max-width:600px)");
   const { setState } = props;
-  const pathname = '/';
-  // console.log('location: ', useLocation());
-  // const { pathname = '' } = useLocation() || {};
+  const pathname = "/";
 
   function logout() {
     // props.setToken("");
@@ -95,7 +94,12 @@ function Header(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="relative" color="primary" elevation={0} className={classes.header}>
+      <AppBar
+        position="relative"
+        color="primary"
+        elevation={0}
+        className={classes.header}
+      >
         <Toolbar>
           <Grid container justify="space-between">
             <Grid item sm={8}>
@@ -110,7 +114,13 @@ function Header(props) {
                     <MenuIcon />
                   </IconButton>
                 </If>
-                <LinkButton to="/home" color="primary" variant="contained" disableElevation className={classes.title}>
+                <LinkButton
+                  to="/home"
+                  color="primary"
+                  variant="contained"
+                  disableElevation
+                  className={classes.title}
+                >
                   <span className={classes.logoContainer}>
                     <img src={Logo} className={classes.logo} alt="logo" />
                   </span>

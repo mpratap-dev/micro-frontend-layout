@@ -14,6 +14,13 @@ const globalTheme = createMuiTheme({
     button: {
       textTransform: "none"
     }
+  },
+  overrides: {
+    MuiTooltip: {
+      root: {
+        borderRadius: 4,
+      }, 
+    }, 
   }
 });
 
