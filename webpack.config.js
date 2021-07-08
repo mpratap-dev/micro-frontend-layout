@@ -10,7 +10,8 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   return merge(defaultConfig, {
-    target: ['web']
+    target: ["web"],
+    externals: ["single-spa", "react", "react-dom", "@material-ui/core"],
     // modify the webpack config however you'd like to by adding to this object
   });
 };

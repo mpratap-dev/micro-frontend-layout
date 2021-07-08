@@ -12,6 +12,7 @@ import DashboardDropdown from "./dropdown";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import { Link, useLocation } from "react-router-dom";
+import useSpacing from "../hooks/useSpacing";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,10 +23,12 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     left: "0",
-    width: "auto",
-    zIndex: 5,
+    zIndex: 1,
     backgroundColor: `${theme.palette.primary.main} !important`,
     color: "#fff !important",
+    position: "fixed",
+    width: "100%",
+    top: 0,
 
     "& .MuiToolbar-root": {
       paddingLeft: 0,
@@ -38,13 +41,14 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "50%",
   },
   logout: {
-    color: "#FFF",
+    color: "#FFF !important",
   },
   title: {
     display: "inline-flex",
     alignItems: "center",
     color: "#FFF",
     cursor: "pointer",
+    paddingLeft: 10 ,
   },
   h100: {
     height: "100%",
@@ -64,6 +68,9 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     width: "80%",
   },
+  textWhite: {
+    color: "white",
+  },
 }));
 
 function Header(props) {
@@ -71,6 +78,7 @@ function Header(props) {
   const userImageSrc = localStorage.getItem("pic");
   const mobileWidth = useMediaQuery("(max-width:600px)");
   const { setState } = props;
+  const spacing = useSpacing();
   const pathname = "/";
 
   function logout() {
@@ -114,25 +122,19 @@ function Header(props) {
                     <MenuIcon />
                   </IconButton>
                 </If>
-                <LinkButton
-                  to="/home"
-                  color="primary"
-                  variant="contained"
-                  disableElevation
-                  className={classes.title}
-                >
+                <LinkButton to="/" className={classes.title}>
                   <span className={classes.logoContainer}>
                     <img src={Logo} className={classes.logo} alt="logo" />
                   </span>
-                  <b className={classes.nowrap}>Admin dashboard</b>
+                  <b className={classes.textWhite}>Admin dashboard</b>
                 </LinkButton>
-                <DashboardDropdown />
-                {/* <If
+                <If
                   condition={
                     userImageSrc && !mobileWidth && pathname !== "/home"
                   }
                 >
-                </If> */}
+                  <DashboardDropdown />
+                </If>
               </Grid>
             </Grid>
             <Grid item>
@@ -153,7 +155,7 @@ function Header(props) {
                       </IconButton>
                     </Link>
                   </If>
-                  <IconButton onClick={logout} className={classes.logout}>
+                  <IconButton onClick={logout} className={`${classes.logout} ${spacing.pa3}`}>
                     <PowerSettingsNewIcon fontSize="small" />
                   </IconButton>
                 </If>

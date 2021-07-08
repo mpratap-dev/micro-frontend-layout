@@ -32,10 +32,16 @@ const useStyles = makeStyles((theme) => ({
   inputInput: ({ width, size }) => {
     const inputPadding = size === "large" ? 2 : 1;
     return {
-      padding: theme.spacing(inputPadding, inputPadding, inputPadding, `calc(1em + ${theme.spacing(4)}px)`),
-      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+      padding: theme.spacing(
+        inputPadding,
+        inputPadding,
+        inputPadding,
+        `calc(1em + ${theme.spacing(4)}px)`
+      ),
+      paddingLeft: `calc(1em + ${theme.spacing(4)}px) !important`,
       transition: theme.transitions.create("width"),
       width: "100%",
+      color: "#fff !important",
       [theme.breakpoints.up("sm")]: {
         width: `${width}ch`,
         "&:focus": {
@@ -46,16 +52,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchInput = ({ handleInputClick, handleSearch, value, width=20,  placeholder="Search...", size = 'small' }) => {
-  const classes = useStyles({width, size});
+const SearchInput = ({
+  handleInputClick,
+  handleSearch,
+  value,
+  width = 20,
+  placeholder = "Search...",
+  size = "small",
+}) => {
+  const classes = useStyles({ width, size });
   const inputProps = {
     "aria-label": "search",
     onChange: handleSearch,
-    value
-  }
+    value,
+  };
 
-  if(handleInputClick) {
-    inputProps.onClick = handleInputClick
+  if (handleInputClick) {
+    inputProps.onClick = handleInputClick;
   }
 
   return (
