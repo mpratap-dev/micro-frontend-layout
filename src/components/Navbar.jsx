@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     color: "#FFF",
     cursor: "pointer",
-    paddingLeft: 10 ,
+    paddingLeft: 10,
   },
   h100: {
     height: "100%",
@@ -155,7 +155,10 @@ function Header(props) {
                       </IconButton>
                     </Link>
                   </If>
-                  <IconButton onClick={logout} className={`${classes.logout} ${spacing.pa3}`}>
+                  <IconButton
+                    onClick={logout}
+                    className={`${classes.logout} ${spacing.pa3}`}
+                  >
                     <PowerSettingsNewIcon fontSize="small" />
                   </IconButton>
                 </If>
